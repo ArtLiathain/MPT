@@ -1,3 +1,103 @@
+Attempt 2
+
+#include <iostream>
+using namespace std;
+
+int Queens(int xy[12][2], int n,int tempxy[12][2]);
+bool Safe(int x, int y, int xy[12][2]);
+int main()
+{
+	int n;
+	cin >> n;
+	// set the matrixes
+	int xy[12][2] = { {0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0}};
+	int tempxy[12][2] = { {0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0}};
+	n = Queens(xy, n-1, tempxy);
+
+	cout << n << endl;
+
+	return 0;
+}
+
+int Queens(int xy[12][2], int n,int tempxy[12][2])
+{
+
+	int ans = 0;
+	// check i column first for 1
+	for (int x = n; x >= 0; x--)
+	{
+	    cout<< x <<" x"<<endl;
+	    for (int y = n; y >= 0; y--)
+        {
+            cout<< y << " y"<<endl;
+            if(Safe(x,y,tempxy))
+            {
+                if (n == 1)
+                {
+                    cout<<"this ran"<<endl;
+                    return 1;
+                }
+                cout<<" Before recursion"<<endl;
+                xy[x][0] = 1;
+                xy[y][0] = 1;
+                ans += Queens(xy, n-1, xy);
+            }
+        }
+	}
+	return ans;
+}
+
+bool Safe(int x, int y, int xy[12][2])
+{
+
+
+		if (xy[x][0] != 0)
+                {
+                    cout<<" Across"<<endl;
+                    return false;
+
+                }
+		if(xy[y][1] != 0)
+                {
+                    cout<<" Up"<<endl;
+                    return false;
+                }
+
+
+		if (xy[x+1][0] and xy[y-1][1] != 0)
+			{
+			cout<<" right up"<<endl;
+                    	return false;
+			}
+		if (xy[x-1][0] and xy[y-1][1] != 0)
+			{
+				    cout<<" left down"<<endl;
+                    return false;
+			}
+                if (xy[x-1][0] and xy[y+1][1] != 0)
+			{
+			cout<<" left up"<<endl;
+                    	return false;
+			}
+		if (xy[x+1][0] and xy[y+1][1] != 0)
+			{
+			cout<<" right down"<<endl;
+                    	return false;
+			}
+
+				return true;
+}
+
+
+
+
+
+
+
+
+
+ATTEMPT 1
+
 #include <iostream>
 using namespace std;
 
