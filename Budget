@@ -1,3 +1,43 @@
+#attempt 2
+
+def value(n,plist,price,maxprice,lcount,pgt):
+    if (pgt == False):
+        return maxprice,pgt
+    if price > n:
+        return maxprice,pgt
+    if lcount == -1:
+        if price == n:
+            maxprice = price
+            pgt = False
+        elif price > maxprice:
+            maxprice = price
+        else:
+            pgt = False
+        return maxprice,pgt
+    else:
+        for i in range(len(plist[lcount])-1,-1,-1):
+            maxprice,pgt = value(n,plist,price+plist[lcount][i],maxprice,lcount-1,pgt)
+            if (pgt == False):
+                break
+    return maxprice,pgt
+
+
+n = int(input())
+c = int(input())
+plist = []
+
+for i in range(c):
+    templist = list(map(int, input().split()))
+    del templist[0]
+    templist.sort()
+    plist.append(list(dict.fromkeys(templist)))
+a,b = value(n,plist,0,0,c-1,True)
+print(a)
+
+
+
+
+#Attempt 1
 def value(n,c,m,plist,price,maxprice,lcount):
     if maxprice == n:
         return maxprice
