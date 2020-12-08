@@ -1,0 +1,21 @@
+def value(n,c,m,plist,price,maxprice,lcount):
+    if maxprice == n:
+        return maxprice
+    if lcount == m :
+        if price > maxprice and price <=n:
+            maxprice = price     
+            return maxprice
+        return maxprice
+    for i in range(len(plist[lcount])):
+        maxprice = value(n,c-1,m,plist,price+plist[lcount][i],maxprice,lcount+1)
+    return maxprice
+
+
+n = int(input())
+c = int(input())
+plist = []
+for i in range(c):
+    templist = list(map(int, input().split()))
+    templist.sort()
+    plist.append(templist)
+print(value(n,c,c,plist,0,0,0))
