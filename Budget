@@ -14,11 +14,8 @@ def value(n,plist,price,maxprice,lcount,pgt):
         else:
             pgt = False
         return maxprice,pgt
-    else:
-        for i in range(len(plist[lcount])-1,-1,-1):
-            maxprice,pgt = value(n,plist,price+plist[lcount][i],maxprice,lcount-1,pgt)
-            if (pgt == False):
-                break
+    for i in range(len(plist[lcount])-1,-1,-1):
+        maxprice,pgt = value(n,plist,price+plist[lcount][i],maxprice,lcount-1,pgt)
     return maxprice,pgt
 
 
